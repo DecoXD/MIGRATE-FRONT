@@ -49,6 +49,8 @@ migrate-frontend/
 2.Instale as dependências:
   ```bash
     cd migrate-frontend
+  ```
+  ```bash  
     npm install
   ```
 3.Execute o projeto:
