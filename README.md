@@ -38,14 +38,23 @@ migrate-frontend/
 ├── tailwind.config.js
 ├── tsconfig.json
 └── package.json
-Como Executar o Projeto
-Clone o repositório:
-git clone https://github.com/seu-usuario/migrate-frontend.git
-Instale as dependências:
-cd migrate-frontend
-npm install
-Execute o projeto:
-npm start
+```
+## Instalação e Uso
+
+1. Clone o repositório:
+   ```bash
+    git clone https://github.com/seu-usuario/migrate-frontend.git
+    ```
+
+2.Instale as dependências:
+  ```bash
+    cd migrate-frontend
+    npm install
+  ```
+3.Execute o projeto:
+  ```bash
+    npm start
+  ```
 Próximas Implementações
 Dashboard de Usuário e Admin
 Páginas de Categorias de Produtos
@@ -54,9 +63,18 @@ Contribuição
 Sinta-se à vontade para contribuir com o projeto. Para isso, siga os passos abaixo:
 
 Faça um fork do repositório.
-Crie uma nova branch: git checkout -b minha-nova-feature
-Faça suas alterações e commit: git commit -m 'Adiciona nova feature'
-Envie para o repositório original: git push origin minha-nova-feature
+1. Crie uma nova branch:
+ ```bash
+ git checkout -b minha-nova-
+ ```
+2. Faça suas alterações e commit:
+ ```bash
+ git commit -m 'Adiciona nova feature'
+ ```
+Envie para o repositório original: 
+ ```bash
+git push origin minha-nova-feature
+ ```
 Crie um pull request.
 Licença
 Este projeto está licenciado sob a MIT License.
