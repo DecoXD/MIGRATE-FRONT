@@ -1,0 +1,47 @@
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import Index from "./pages/Home/Index";
+import Cart from "./pages/Cart";
+import Products from "./pages/Products";
+import Admin from "./pages/Admin";
+import ProductDetails from "./pages/ProductDetails";
+import Contact from "./pages/Contact";
+import NotFound404 from "./pages/NotFound404";
+
+import AuthPage from "./pages/Auth/AuthPage";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+
+
+
+const App = () => (
+
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Index />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route element={<AuthPage/>} > 
+              <Route element={<Register/>} path="/register"/>
+              <Route element={<Login/>}path="/login"/>
+            </Route>
+            <Route path="/contact" element={<Contact />} />
+          </Route>
+          <Route path="/*" element={<NotFound404 />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+
+);
+
+export default App;
