@@ -1,69 +1,62 @@
-# Welcome to your Lovable project
+# MIGRATE Frontend
 
-## Project info
+MIGRATE é um website dedicado à venda de serviços de marketing, social media, desenvolvimento de sites e artes digitais. Este README fornece uma visão geral do front-end do projeto.
 
-**URL**: https://lovable.dev/projects/1c852e62-a66e-4ba4-b952-28d00d4d4b9f
+## Tecnologias Utilizadas
 
-## How can I edit this code?
+- **React** com **TypeScript**: Framework e linguagem para construção da interface do usuário.
+- **Tailwind CSS**: Biblioteca de utilitários CSS para estilização rápida e responsiva.
+- **React Router DOM**: Gerenciamento de rotas e navegação no aplicativo.
+- **Shadcn**: Componentes UI para uma interface de usuário consistente e moderna.
 
-There are several ways of editing your application.
+## Funcionalidades Implementadas
 
-**Use Lovable**
+- **Interface de Usuário**: Páginas de produtos e filtros.
+- **Formulários**: Login e registro de usuários.
+- **Carrinho de Compras**: Adição e visualização de produtos no carrinho.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1c852e62-a66e-4ba4-b952-28d00d4d4b9f) and start prompting.
+## Estrutura do Projeto
 
-Changes made via Lovable will be committed automatically to this repo.
+```plaintext
+migrate-frontend/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── Navbar.tsx
+│   │   ├── ProductCard.tsx
+│   │   └── ...
+│   ├── pages/
+│   │   ├── Home.tsx
+│   │   ├── Login.tsx
+│   │   ├── Register.tsx
+│   │   └── ...
+│   ├── App.tsx
+│   ├── index.tsx
+│   └── ...
+├── tailwind.config.js
+├── tsconfig.json
+└── package.json
+Como Executar o Projeto
+Clone o repositório:
+git clone https://github.com/seu-usuario/migrate-frontend.git
+Instale as dependências:
+cd migrate-frontend
+npm install
+Execute o projeto:
+npm start
+Próximas Implementações
+Dashboard de Usuário e Admin
+Páginas de Categorias de Produtos
+Página de Pedidos
+Contribuição
+Sinta-se à vontade para contribuir com o projeto. Para isso, siga os passos abaixo:
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/1c852e62-a66e-4ba4-b952-28d00d4d4b9f) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+Faça um fork do repositório.
+Crie uma nova branch: git checkout -b minha-nova-feature
+Faça suas alterações e commit: git commit -m 'Adiciona nova feature'
+Envie para o repositório original: git push origin minha-nova-feature
+Crie um pull request.
+Licença
+Este projeto está licenciado sob a MIT License.
