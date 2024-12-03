@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Product } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
-import { getAllProducts } from "@/api/products/productApi";
+import { getAllProducts } from "@/api/backend/productApi";
 import Loader from "@/components/Loader";
 
 // Mock data for demonstration

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom"
 
 const Hero = () => {
   return (
-    <section className="h-screen bg-gradient-to-b   text-black  flex items-center">
-    <div className="container mx-auto py-20">
-      <div className="max-w-2xl">
+    <section className="min-h-screen bg-gradient-to-b   text-black  flex items-center">
+    <div className="container mx-auto py-10  flex justify-center">
+      <div className="max-w-2xl text-center ">
         <h1 className="text-5xl font-bold mb-6 animate-fade-in">
           Transforme seu Marketing Digital
         </h1>

@@ -5,7 +5,7 @@ import { registerInputs } from '@/constantes'
 import { Link } from 'react-router-dom'
 import Input from '../shared/Input'
 
-const Authform = ({title,subtitle,inputs,link,handleChange,handleSubmit}) => {
+const Authform = ({title,subtitle,inputs,link,handleChange,handleSubmit,formItens}) => {
   
   return (
     <div className="min-h-[80vh] flex items-center justify-center pt-20">
@@ -16,7 +16,7 @@ const Authform = ({title,subtitle,inputs,link,handleChange,handleSubmit}) => {
           <div className=" flex flex-col gap-4 "> 
             {
               inputs.map((input,idx) =>{
-              return <Input {...input} key={idx} handleChange={handleChange}/>
+              return <Input {...input} key={idx} handleChange={handleChange} value={formItens[input.name]}/>
               })
             }
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Input = ({name,type,placeholder,icon,handleChange}) => {
+const Input = ({name,type,placeholder,icon,handleChange,value}) => {
   return (
    <label className="flex flex-col items-start gap-1 relative ">
     <span className='capitalize font-semibold text-base text-slate-600'>{name}</span>
@@ -11,7 +11,10 @@ const Input = ({name,type,placeholder,icon,handleChange}) => {
        type={type} 
        onChange={(e) => handleChange(e,name)}
        placeholder={placeholder}  
-       name={name}/>
+       name={name}
+       value={value}
+       />
+       
 
     </div>
    </label>

@@ -64,6 +64,7 @@ export const featuredProducts = [
     },
   ];
 
+  
 export const registerInputs = [
 
   {
@@ -93,6 +94,8 @@ export const registerInputs = [
     icon:"/assets/icons/password.svg"
   }
 ]
+
+
 export const loginInputs = [
   {
     name:"email",
