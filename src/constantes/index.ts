@@ -67,7 +67,7 @@ export const featuredProducts = [
 export const registerInputs = [
 
   {
-    name:"nome",
+    name:"name",
     placeholder:"Digite seu Nome",
     type:'text',
     icon:"/assets/icons/person.svg"
@@ -87,7 +87,7 @@ export const registerInputs = [
     icon:"/assets/icons/password.svg"
   },
   {
-    name:"confirm password",
+    name:"confirmPassword",
     placeholder:"Confirme sua senha",
     type:"password",
     icon:"/assets/icons/password.svg"
