@@ -1,4 +1,4 @@
-import { register } from "@/api/backend/authApi";
+import { logoff, register } from "@/api/backend/authApi";
 import { createContext, useEffect, useState } from "react";
 
 type AuthProviderProps = {
@@ -10,7 +10,7 @@ export const AuthContext = createContext(null);
  function AuthContextProvider ({children}:AuthProviderProps){
   const [userToken,setUserToken] = useState(localStorage.getItem('token'))
 
-  const value = {register,userToken,setUserToken}
+  const value = {register,userToken,setUserToken,logoff}
   useEffect(() => {
     if (userToken) {
       localStorage.setItem('token', userToken);

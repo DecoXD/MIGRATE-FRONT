@@ -2,13 +2,21 @@ import { Link } from 'react-router-dom';
 import { ShoppingCart, User, Menu, X,ArrowBigRightDashIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCartStore } from '@/store/cart';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { AuthContext } from '@/context/authContext';
 
 export const Navbar = () => {
+
+  const {userToken,setUserToken,logoff} = useContext(AuthContext)
   const cartItems = useCartStore((state) => state.items);
   const itemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  function handleLogoff(){
+    logoff()
+    setUserToken(null)
+  }
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -35,15 +43,27 @@ export const Navbar = () => {
                 </span>
               )}
             </Link>
-            <Link to="/register">
-              {/* <Button variant="ghost" size="icon">
-                <User className="w-5 h-5" />
-              </Button> */}
-              <Button variant="ghost"  className='flex gap-1 bg-secondary text-white font-medium'>
-                <span>Acesse já</span>
+           {
+            userToken?
+            
+           
+  
+              <Button onClick={handleLogoff} variant="ghost"  className='flex gap-1 bg-secondary text-white font-medium'>
+                <span>Sair</span>
                 <ArrowBigRightDashIcon className="w-5 h-5" />
               </Button>
-            </Link>
+            :
+            <Link to="/register">
+                {/* <Button variant="ghost" size="icon">
+                  <User className="w-5 h-5" />
+                </Button> */}
+                <Button variant="ghost"  className='flex gap-1 bg-secondary text-white font-medium'>
+                  <span>Acesse já</span>
+                  <ArrowBigRightDashIcon className="w-5 h-5" />
+                </Button>
+              </Link>
+            
+            }
           </div>
 
           <button className="md:hidden" onClick={toggleMenu}>

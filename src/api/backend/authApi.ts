@@ -21,5 +21,11 @@ export async function register({name,email,password}) {
   }
 }
 
-
+export async function logoff(){
+  try {
+    localStorage.removeItem('token')
+  } catch (error) {
+    console.log(error)
+  }
+}
 
