@@ -1,3 +1,4 @@
+import { LoginUserProps, RegisterUserProps } from '@/types/auth';
 import api from 'axios';
 
 
@@ -8,7 +9,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000
 
 
 
-export async function register({name,email,password}) {
+export async function register({name,email,password}:RegisterUserProps) {
   try {
     const response = await api.post(`${API_BASE_URL}/api/createaccount`,{name,email,password})
     console.log(response)
@@ -21,6 +22,19 @@ export async function register({name,email,password}) {
   }
 }
 
+
+export async function login({email,password}:LoginUserProps):Promise<string>{
+  try {
+    const response = await api.post(`${API_BASE_URL}/api/signin`,{email,password})
+    console.log(response)
+    toast.success(response.data.message)
+    return response.data.token
+  } catch (error) {
+    toast.error(error.response.data.message)
+    return null
+  }
+}
+
 export async function logoff(){
   try {
     localStorage.removeItem('token')
@@ -28,4 +42,8 @@ export async function logoff(){
     console.log(error)
   }
 }
+
+
+
+
 
