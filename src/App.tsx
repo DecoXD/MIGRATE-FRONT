@@ -11,12 +11,15 @@ import Admin from "./pages/Admin";
 import ProductDetails from "./pages/ProductDetails";
 import Contact from "./pages/Contact";
 import NotFound404 from "./pages/NotFound404";
-
 import AuthPage from "./pages/Auth/AuthPage";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import {DashboardIndex,Notifications, Users} from "./pages/Dashboard/Sections";
+
+
 
 
 
@@ -41,10 +44,17 @@ const App = () =>{
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/admin" element={<Admin />} />
+
+            <Route path="/dashboard" element={<Dashboard/>}>
+              <Route path="/dashboard/" element={<DashboardIndex/>}/>
+              <Route path="/dashboard/notifications" element={<Notifications/>}/>
+              <Route path="/dashboard/users" element={<Users/>}/>
+            </Route>
             <Route element={userToken?<Navigate to={'/'}/>:<AuthPage/>} > 
               <Route element={<Register/>} path="/register"/>
               <Route element={<Login/>}path="/login"/>
             </Route>
+              
             <Route path="/contact" element={<Contact />} />
           </Route>
           <Route path="/*" element={<NotFound404 />} />

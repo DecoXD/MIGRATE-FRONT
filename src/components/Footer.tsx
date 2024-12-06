@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground py-12 mt-20">
+    <footer className="relative z-50 bg-primary text-primary-foreground py-12 mt-20">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h3 className="text-xl font-bold mb-4">MIGRATE</h3>

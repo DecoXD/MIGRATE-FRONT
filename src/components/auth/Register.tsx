@@ -65,6 +65,7 @@ const Register = () => {
       subtitle={"Crie sua conta em menos de 1 minuto."} 
       inputs={registerInputs} 
       link={'/login'}
+      action="register"
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       formItens = {formItens}

@@ -5,7 +5,7 @@ import { registerInputs } from '@/constantes'
 import { Link } from 'react-router-dom'
 import Input from '../shared/Input'
 
-const Authform = ({title,subtitle,inputs,link,handleChange,handleSubmit,formItens}) => {
+const Authform = ({title,subtitle,inputs,link,handleChange,handleSubmit,formItens,action}) => {
   
   return (
     <div className="min-h-[80vh] flex items-center justify-center pt-20">
@@ -22,7 +22,7 @@ const Authform = ({title,subtitle,inputs,link,handleChange,handleSubmit,formIten
             </div>
 
           <button type="submit"
-          className='border-none w-full p-3 bg-secondary text-white font-medium rounded-lg'>Register</button>
+          className='border-none w-full p-3 bg-secondary text-white font-medium rounded-lg'>{action}</button>
           <p className='text-sm font-medium'>já possui uma conta? <Link to={link} className='text-secondary '>entre já</Link></p>
         </div>
       </form>

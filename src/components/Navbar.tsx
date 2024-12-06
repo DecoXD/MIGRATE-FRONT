@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, User, Menu, X,ArrowBigRightDashIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCartStore } from '@/store/cart';
@@ -6,9 +6,11 @@ import { useContext, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { AuthContext } from '@/context/authContext';
 
+
 export const Navbar = () => {
 
   const {userToken,setUserToken,logoff} = useContext(AuthContext)
+  const navigate = useNavigate()
   const cartItems = useCartStore((state) => state.items);
   const itemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +18,9 @@ export const Navbar = () => {
   function handleLogoff(){
     logoff()
     setUserToken(null)
+    navigate('/')
+    
+
   }
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -35,14 +40,26 @@ export const Navbar = () => {
             <Link to="/categories" className="hover:text-secondary transition-colors">
               Categories
             </Link>
-            <Link to="/cart" className="relative">
-              <ShoppingCart className="w-6 h-6" />
-              {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-secondary text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                  {itemCount}
-                </span>
-              )}
+
+            {userToken &&
+            <>
+              <Link to="/cart" className="relative">
+                <ShoppingCart className="w-6 h-6" />
+                {itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-secondary text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    {itemCount}
+                  </span>
+                )}
+              </Link>
+            
+              <Link to={'/dashboard'}>
+              <Button variant="ghost" size="icon">
+                  <User className="w-5 h-5" />
+              </Button>
             </Link>
+           </>
+           }
+
            {
             userToken?
             
@@ -54,9 +71,6 @@ export const Navbar = () => {
               </Button>
             :
             <Link to="/register">
-                {/* <Button variant="ghost" size="icon">
-                  <User className="w-5 h-5" />
-                </Button> */}
                 <Button variant="ghost"  className='flex gap-1 bg-secondary text-white font-medium'>
                   <span>Acesse já</span>
                   <ArrowBigRightDashIcon className="w-5 h-5" />

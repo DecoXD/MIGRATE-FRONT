@@ -45,6 +45,7 @@ const Login = () => {
         inputs={loginInputs}
         formItens= {formItens}
         link={'/register'}
+        action ="login"
         handleChange={handleChange}
         handleSubmit={handleSubmit}
        

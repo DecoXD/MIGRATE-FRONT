@@ -38,6 +38,7 @@ export async function login({email,password}:LoginUserProps):Promise<string>{
 export async function logoff(){
   try {
     localStorage.removeItem('token')
+    toast.success('Você foi deslogado, Até mais !')
   } catch (error) {
     console.log(error)
   }
