@@ -17,7 +17,7 @@ const products = [
   { id: 3, name: "Product 3", price: "$199.99", stock: 20, category: "Electronics" },
 ];
 
-const Products = () => {
+const DashboardProducts = () => {
   return (
    
       <div className="space-y-6">
@@ -71,4 +71,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default DashboardProducts;

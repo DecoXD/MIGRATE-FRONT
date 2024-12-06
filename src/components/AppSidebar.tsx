@@ -22,16 +22,16 @@ const menuItems = [
   { title: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
   { title: "Users", icon: Users, path: "/dashboard/users" },
   { title: "Products", icon: Package, path: "/dashboard/products" },
-  { title: "Orders", icon: ShoppingCart, path: "/orders" },
+  { title: "Orders", icon: ShoppingCart, path: "/dashboard/orders" },
   { title: "Notifications", icon: Bell, path: "/dashboard/notifications" },
-  { title: "Settings", icon: Settings, path: "/settings" },
+  { title: "Settings", icon: Settings, path: "/dashboard/settings" },
 ];
 export function AppSidebar() {
   const location = useLocation();
 
   return (
-    <Sidebar className="mt-20 ">
-      <SidebarContent className="">
+    <Sidebar className="mt-20 bg-white ">
+      <SidebarContent className="bg-white">
         <div className="p-4">
           <h1 className="text-xl font-bold">Admin Panel</h1>
         </div>

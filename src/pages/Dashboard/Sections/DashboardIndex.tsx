@@ -31,7 +31,7 @@ const stats = [
 
 const DashboardIndex = () => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-full">
     <div>
       <h1 className="text-2xl font-bold">Dashboard Overview</h1>
       <p className="text-muted-foreground">Welcome to your admin dashboard</p>

@@ -5,11 +5,11 @@ import { Outlet } from "react-router-dom"
 export default function Dashboard() {
   return (
     <div className="min-h-screen flex w-full  mt-20">
-    <SidebarProvider>
+    <SidebarProvider className="">
        <AppSidebar />
-       <main className="">
+       <main className="w-full">
          <SidebarTrigger  />
-         <div className="md:pl-8 px-4">
+         <div className="md:pl-8 px-4 ">
          <Outlet/>
          </div>
        </main>

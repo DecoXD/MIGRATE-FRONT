@@ -17,7 +17,7 @@ import Login from "./components/auth/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import {DashboardIndex,Notifications, Users} from "./pages/Dashboard/Sections";
+import {DashboardIndex,Notifications, Users,DashboardProducts,Orders,Settings} from "./pages/Dashboard/Sections";
 
 
 
@@ -49,6 +49,9 @@ const App = () =>{
               <Route path="/dashboard/" element={<DashboardIndex/>}/>
               <Route path="/dashboard/notifications" element={<Notifications/>}/>
               <Route path="/dashboard/users" element={<Users/>}/>
+              <Route path="/dashboard/products" element={<DashboardProducts/>}/>
+              <Route path="/dashboard/orders" element={<Orders/>}/>
+              <Route path="/dashboard/settings" element={<Settings/>}/>
             </Route>
             <Route element={userToken?<Navigate to={'/'}/>:<AuthPage/>} > 
               <Route element={<Register/>} path="/register"/>
