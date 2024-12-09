@@ -45,7 +45,7 @@ const App = () =>{
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/admin" element={<Admin />} />
 
-            <Route path="/dashboard" element={<Dashboard/>}>
+            <Route path="/dashboard" element={!userToken?<Navigate to={'/'}/>:<Dashboard/>}>
               <Route path="/dashboard/" element={<DashboardIndex/>}/>
               <Route path="/dashboard/notifications" element={<Notifications/>}/>
               <Route path="/dashboard/users" element={<Users/>}/>
