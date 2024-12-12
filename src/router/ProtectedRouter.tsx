@@ -11,7 +11,7 @@ const ProtectedRouter = ({Element,isAuth=false}:ProtectedRouterProps) => {
   const {userToken}= useContext(AuthContext)
 
   //if user is'nt logged or if is logged and as login or register route
-  if(!userToken || (userToken && isAuth)) {
+  if((!userToken && !isAuth )|| (userToken && isAuth)) {
     return <Navigate to="/" />;
     
   }

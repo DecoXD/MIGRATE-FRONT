@@ -17,28 +17,32 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { dashboardMenuItems } from "@/constantes";
+import { useQuery } from "@tanstack/react-query";
+import { getUser } from "@/api/backend/authApi";
 // isso aqui coloco em constantes
-const menuItems = [
-  { title: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
-  { title: "Users", icon: Users, path: "/dashboard/users" },
-  { title: "Products", icon: Package, path: "/dashboard/products" },
-  { title: "Orders", icon: ShoppingCart, path: "/dashboard/orders" },
-  { title: "Notifications", icon: Bell, path: "/dashboard/notifications" },
-  { title: "Settings", icon: Settings, path: "/dashboard/settings" },
-];
+
 export function AppSidebar() {
   const location = useLocation();
+  const{data,isLoading} = useQuery({
+    queryFn:getUser,
+    queryKey:['user'],
+  })
+  
 
   return (
     <Sidebar className="mt-20 bg-white ">
       <SidebarContent className="bg-white">
         <div className="p-4">
           <h1 className="text-xl font-bold">Admin Panel</h1>
+          {!isLoading &&<p className="text-xs font-light text-slate-400 capitalize pt-1">{`@${data?.name.toLowerCase()}`}</p>
+            
+          }
         </div>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {menuItems.map((item) => (
+              {dashboardMenuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <Link

@@ -45,6 +45,21 @@ export async function logoff(){
 }
 
 
+export async function getUser(){
+  try {
+    const token = localStorage.getItem('token')
+    console.log(token)
+    const response = await api.get(`${API_BASE_URL}/api/getuser`,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    })
+    toast(`Olá ${response.data.user.name.toLowerCase()}`)
+    return response.data.user
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
 

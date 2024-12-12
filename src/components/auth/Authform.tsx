@@ -4,8 +4,9 @@ import Register from './Register'
 import { registerInputs } from '@/constantes'
 import { Link } from 'react-router-dom'
 import Input from '../shared/Input'
+import { AuthFormProps, RegisterInputs } from '@/types/auth'
 
-const Authform = ({title,subtitle,inputs,link,handleChange,handleSubmit,formItens,action}) => {
+const Authform = ({title,subtitle,inputs,link,handleChange,handleSubmit,formItens,action,isPending}:AuthFormProps) => {
   
   return (
     <div className="min-h-[80vh] flex items-center justify-center pt-20">
@@ -15,14 +16,14 @@ const Authform = ({title,subtitle,inputs,link,handleChange,handleSubmit,formIten
           <p className='text-xs text-slate-700 font-medium'>{subtitle}</p>
           <div className=" flex flex-col gap-4 "> 
             {
-              inputs.map((input,idx) =>{
-              return <Input {...input} key={idx} handleChange={handleChange} value={formItens[input.name]}/>
+              inputs.map((input:RegisterInputs,idx:number) =>{
+              return <Input {...input} key={`${input.name}#${idx}`} handleChange={handleChange} value={formItens[input.name]}/>
               })
             }
             </div>
 
           <button type="submit"
-          className='border-none w-full p-3 bg-secondary text-white font-medium rounded-lg'>{action}</button>
+          className='border-none w-full p-3 bg-secondary text-white font-medium rounded-lg' disabled = {isPending} >{action}</button>
           <p className='text-sm font-medium'>já possui uma conta? <Link to={link} className='text-secondary '>entre já</Link></p>
         </div>
       </form>

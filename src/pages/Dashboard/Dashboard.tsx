@@ -1,8 +1,19 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/AppSidebar"
 import { Outlet } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
+import { getUser } from "@/api/backend/authApi"
+import Loader from "@/components/Loader"
  
 export default function Dashboard() {
+  // const{data,isLoading} = useQuery({
+  //   queryFn:getUser,
+  //   queryKey:['user'],
+  //   staleTime:1000
+  // })
+  
+  // if(!data) return <Loader/>
+
   return (
     <div className="min-h-screen flex w-full  mt-20">
     <SidebarProvider className="">

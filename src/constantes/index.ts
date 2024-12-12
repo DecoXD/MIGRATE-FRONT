@@ -1,3 +1,5 @@
+import { Bell, LayoutDashboard, Package, Settings, ShoppingCart, Users } from "lucide-react";
+
 export const pricingPlans = [
     {
       name: "Starter",
@@ -35,6 +37,7 @@ export const pricingPlans = [
     
   ];
 
+  
 export const categories = [
     { name: 'Marketing', image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b' },
     { name: 'Sites e Sistemas', image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b' },
@@ -113,3 +116,13 @@ export const loginInputs = [
 
   }
 ]
+
+
+export const dashboardMenuItems = [
+  { title: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
+  { title: "Users", icon: Users, path: "/dashboard/users" },
+  { title: "Products", icon: Package, path: "/dashboard/products" },
+  { title: "Orders", icon: ShoppingCart, path: "/dashboard/orders" },
+  { title: "Notifications", icon: Bell, path: "/dashboard/notifications" },
+  { title: "Settings", icon: Settings, path: "/dashboard/settings" },
+];

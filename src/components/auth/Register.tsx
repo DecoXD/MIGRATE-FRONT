@@ -1,24 +1,24 @@
 import React, { useContext, useState } from 'react'
-import Input from '../shared/Input'
 import Authform from './Authform'
 import { registerInputs } from '@/constantes'
 import { toast } from 'sonner'
 
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/context/authContext'
+import { useCreateUser } from '@/lib/react-query/queriesAndMutations'
 const Register = () => {
   const [formItens,setFormItens] = useState({name:"",password:"",confirmPassword:"",email:""})
-  const{register,setUserToken} = useContext(AuthContext)
+  const{setUserToken} = useContext(AuthContext)
+  const {mutateAsync:register,isPending} = useCreateUser()
   const navigate = useNavigate()
-  //handlechange
-  function handleChange(e,name){
+  //handlechange maybe might be passes by context
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>,name:string){
     e.preventDefault()
     setFormItens(prev =>({...prev,[name]:e.target.value}))
-   
-    
   }
+
   //onsubmit
-  async function handleSubmit(e){
+  async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
 
     e.preventDefault()
  
@@ -69,6 +69,7 @@ const Register = () => {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       formItens = {formItens}
+      isPending = {isPending}
       />
   ) 
 }

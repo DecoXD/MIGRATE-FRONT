@@ -121,11 +121,18 @@ export default function Products() {
                           return
                         }
                         setSelectedCategories([...selectedCategories, category]);
-                      } else {
-                        setSelectedCategories(
-                          selectedCategories.filter((c) => c !== category)
-                        );
                       }
+                      else if(!checked){
+                        if(category =="All"){
+                          setSelectedCategories([])
+                          return
+                        } else {
+                          setSelectedCategories(
+                            selectedCategories.filter((c) => c !== category)
+                          );
+                        }
+                      }
+                      
                     }}
                   />
                   <label
