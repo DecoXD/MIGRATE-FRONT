@@ -16,6 +16,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Layout } from "@/components/Layout";
 import NotFound404 from "@/pages/NotFound404";
 import AdminRoute from "./AdminRoute";
+import Loader from "@/components/Loader";
 
 const router = createBrowserRouter([
  {
@@ -51,7 +52,8 @@ const router = createBrowserRouter([
         },
         {
           path:"/dashboard/orders",
-          element:<AdminRoute Element={<Orders/>}/>
+          element:<AdminRoute Element={<Orders/>}/>,
+          
         },
         {
           path:"/dashboard/users",
@@ -59,7 +61,7 @@ const router = createBrowserRouter([
         },
         {
           path:"/dashboard/products",
-          element:<AdminRoute Element={<Products/>}/>
+          element:<AdminRoute Element={<DashboardProducts/>}/>
         },
         {
           path:"/dashboard/settings",
@@ -87,7 +89,8 @@ const router = createBrowserRouter([
       element:<Contact/>
     },
   ],
-  errorElement:<NotFound404/>
+  errorElement:<NotFound404/>,
+ 
  }
 ])
 

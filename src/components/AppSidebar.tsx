@@ -18,7 +18,7 @@ import { useAuthContext } from "@/context/authContext";
 export function AppSidebar() {
   const location = useLocation();
   const{user,isLoading} = useAuthContext()
-  
+
 
   return (
     <Sidebar className="mt-20 bg-white ">
@@ -34,7 +34,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {
                 dashboardMenuItems.map((item) => {
-                  if(item.admin && user.role!="ADMIN") return
+                  if(item.admin && user?.role!="ADMIN") return
                   return(
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild>

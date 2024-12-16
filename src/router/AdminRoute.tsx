@@ -1,3 +1,4 @@
+import Loader from "@/components/Loader"
 import { AuthContext } from "@/context/authContext"
 
 import { useContext } from "react"
@@ -10,8 +11,10 @@ type AdminRouterProps = {
 
 
 const AdminRoute = ({Element}:AdminRouterProps):JSX.Element => {
-  const {user} = useContext(AuthContext)
+  const {user,isLoading} = useContext(AuthContext)
 
+  if(isLoading) return <Loader/>
+  
   if(!user){
     return <Navigate to={'/'}/>
   }
