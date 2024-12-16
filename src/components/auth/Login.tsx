@@ -3,11 +3,12 @@ import Authform from './Authform'
 import { loginInputs } from '@/constantes'
 import { AuthContext } from '@/context/authContext'
 import { toast } from 'sonner'
+import { useAccessAccount } from '@/lib/react-query/queriesAndMutations'
 
 const Login = () => {
 
-  const {setUserToken,login} = useContext(AuthContext)
-
+  const {setUserToken} = useContext(AuthContext)
+  const {mutateAsync:login,isPending} = useAccessAccount()
   const [formItens,setFormItens] = useState({password:"",email:""})
   
   function handleChange(e,name){
@@ -48,7 +49,7 @@ const Login = () => {
         action ="login"
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-       
+        isPending={isPending}
        />
 
   )

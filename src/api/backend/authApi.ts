@@ -1,4 +1,4 @@
-import { LoginUserProps, RegisterUserProps } from '@/types/auth';
+import { LoginUserProps, RegisterUserProps, UserProps } from '@/types/auth';
 import api from 'axios';
 
 
@@ -11,8 +11,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000
 
 export async function register({name,email,password}:RegisterUserProps) {
   try {
-    const response = await api.post(`${API_BASE_URL}/api/createaccount`,{name,email,password})
-    console.log(response)
+    const response = await api.post(`${API_BASE_URL}/api/createaccount`,{name,email,password}) 
     toast.success(response.data.message)
     return response.data.token
   
@@ -26,7 +25,6 @@ export async function register({name,email,password}:RegisterUserProps) {
 export async function login({email,password}:LoginUserProps):Promise<string>{
   try {
     const response = await api.post(`${API_BASE_URL}/api/signin`,{email,password})
-    console.log(response)
     toast.success(response.data.message)
     return response.data.token
   } catch (error) {
@@ -45,16 +43,15 @@ export async function logoff(){
 }
 
 
-export async function getUser(){
+export async function getUser():Promise<UserProps>{
   try {
     const token = localStorage.getItem('token')
-    console.log(token)
     const response = await api.get(`${API_BASE_URL}/api/getuser`,{
       headers:{
         Authorization:`Bearer ${token}`
       }
     })
-    toast(`Olá ${response.data.user.name.toLowerCase()}`)
+   console.log(response)
     return response.data.user
   } catch (error) {
     console.log(error)

@@ -119,10 +119,10 @@ export const loginInputs = [
 
 
 export const dashboardMenuItems = [
-  { title: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
-  { title: "Users", icon: Users, path: "/dashboard/users" },
-  { title: "Products", icon: Package, path: "/dashboard/products" },
-  { title: "Orders", icon: ShoppingCart, path: "/dashboard/orders" },
-  { title: "Notifications", icon: Bell, path: "/dashboard/notifications" },
-  { title: "Settings", icon: Settings, path: "/dashboard/settings" },
+  { title: "Dashboard", icon: LayoutDashboard, path: "/dashboard",admin:false },
+  { title: "Users", icon: Users, path: "/dashboard/users",admin:true },
+  { title: "Products", icon: Package, path: "/dashboard/products",admin:true },
+  { title: "Orders", icon: ShoppingCart, path: "/dashboard/orders",admin:true },
+  { title: "Notifications", icon: Bell, path: "/dashboard/notifications",admin:false },
+  { title: "Settings", icon: Settings, path: "/dashboard/settings" ,admin:false},
 ];

@@ -6,8 +6,8 @@ import type {
 } from "@/components/ui/toast"
 import { useEffect, useState } from "react"
 
-const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 500000
+const TOAST_LIMIT = 5
+const TOAST_REMOVE_DELAY = 5000
 
 type ToasterToast = ToastProps & {
   id: string

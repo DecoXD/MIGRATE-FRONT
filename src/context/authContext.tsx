@@ -1,25 +1,39 @@
 import { getUser, login, logoff,  } from "@/api/backend/authApi";
 import { useCreateUser } from "@/lib/react-query/queriesAndMutations";
+import { UserProps } from "@/types/auth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type AuthProviderProps = {
   children:React.ReactNode
 }
 
+type AuthContextProps = {
+  user: UserProps | null;
+  userToken: string | null;
+  setUserToken: (token: string | null) => void;
+  logoff: () => void;
+  isLoading:Boolean;
+}
+
+
 /*!important*/ 
 
 // todo: put auth methods inside react query instead directly implementation
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 function AuthContextProvider ({children}:AuthProviderProps){
-  const queryClient = useQueryClient()
-  const [userToken,setUserToken] = useState(localStorage.getItem('token'))
   
- 
+  const [userToken,setUserToken] = useState(localStorage.getItem('token'))
+  //!important deixar apenas o getuser aqui
+  const {data:user,isLoading,isError} = useQuery({
+    queryFn:getUser,
+    queryKey:['user',userToken],
+    enabled:!!userToken
+  })
 
-  const value = {userToken,setUserToken,logoff,login}
+  const value = {user,userToken,setUserToken,logoff,isLoading}
   //invalidate user query key when i realize logoff
 
 
@@ -42,7 +56,9 @@ function AuthContextProvider ({children}:AuthProviderProps){
   )
 }
 
+export const useAuthContext = () => useContext(AuthContext)
 export default AuthContextProvider
+
 
 // export const AuthContext = createContext(null);
 

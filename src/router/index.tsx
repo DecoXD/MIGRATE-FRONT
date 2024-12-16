@@ -15,6 +15,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Layout } from "@/components/Layout";
 import NotFound404 from "@/pages/NotFound404";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
  {
@@ -50,15 +51,15 @@ const router = createBrowserRouter([
         },
         {
           path:"/dashboard/orders",
-          element:<Orders/>
+          element:<AdminRoute Element={<Orders/>}/>
         },
         {
           path:"/dashboard/users",
-          element:<Users/>
+          element:<AdminRoute Element={<Users/>}/>
         },
         {
           path:"/dashboard/products",
-          element:<DashboardProducts/>
+          element:<AdminRoute Element={<Products/>}/>
         },
         {
           path:"/dashboard/settings",

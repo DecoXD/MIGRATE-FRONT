@@ -1,3 +1,5 @@
+
+
 export type RegisterUserProps = {
   name:string,
   password:string,
@@ -16,7 +18,13 @@ export type RegisterInputs = {
   icon: string;
 }
 
-
+export type UserProps = {
+    name:string,
+    email:string,
+    id?:string
+    role:  "ADMIN"| "USER"
+   
+}
 
 export type AuthFormProps = {
   title: string;
