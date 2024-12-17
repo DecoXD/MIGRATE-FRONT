@@ -28,9 +28,17 @@ function AuthContextProvider ({children}:AuthProviderProps){
   const [userToken,setUserToken] = useState(localStorage.getItem('token'))
   //!important deixar apenas o getuser aqui
   const {data:user,isLoading,isError} = useQuery({
-    queryFn:getUser,
+    queryFn:async () =>{
+      try {
+        return await getUser()
+      } catch (error) {
+        console.log(error)
+        return null
+      }
+    },
     queryKey:['user',userToken],
-    enabled:!!userToken
+    enabled:!!userToken,
+    staleTime:1000 * 60 * 60
   })
 
   const value = {user,userToken,setUserToken,logoff,isLoading}

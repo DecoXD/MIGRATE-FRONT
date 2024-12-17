@@ -47,6 +47,7 @@ const Register = () => {
 
         if(!token) return
       
+        localStorage.setItem('token',token)
         setUserToken(token)
         setFormItens({name:'',password:"",confirmPassword:"",email:""})
         navigate('/')

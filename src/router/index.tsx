@@ -17,10 +17,12 @@ import { Layout } from "@/components/Layout";
 import NotFound404 from "@/pages/NotFound404";
 import AdminRoute from "./AdminRoute";
 import Loader from "@/components/Loader";
+import CreateProduct from "@/pages/Dashboard/Sections/CreateProduct";
 
 const router = createBrowserRouter([
  {
   element:<Layout/>,
+  errorElement:<NotFound404/>,
   children:[
     {
       path:'/',
@@ -68,6 +70,10 @@ const router = createBrowserRouter([
           element:<Settings/>,
   
         },
+        {
+          path:"/dashboard/products/add",
+          element:<AdminRoute Element={<CreateProduct/>}/>,
+        },
       ]
     },
     {
@@ -89,7 +95,7 @@ const router = createBrowserRouter([
       element:<Contact/>
     },
   ],
-  errorElement:<NotFound404/>,
+ 
  
  }
 ])

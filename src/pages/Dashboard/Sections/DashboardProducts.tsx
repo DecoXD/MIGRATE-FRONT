@@ -9,7 +9,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { Pen, Search, Trash } from "lucide-react";
+import { useProductContext } from "@/context/productContext";
+import Loader from "@/components/Loader";
+import { Link } from "react-router-dom";
+import { useDeleteProduct } from "@/lib/react-query/queriesAndMutations";
 
 const products = [
   { id: 1, name: "Product 1", price: "$99.99", stock: 50, category: "Electronics" },
@@ -18,6 +22,23 @@ const products = [
 ];
 
 const DashboardProducts = () => {
+  //handle delete 
+  const {mutateAsync:deleteProduct} = useDeleteProduct()
+  async function handleDelete(id:number){
+    try {
+      await deleteProduct(id)
+    } catch (error) {
+      console.log('error to delete product')
+      return
+    }
+  }
+  //handle update product
+  //handle create product
+  const {productList,isLoading} = useProductContext()
+
+  if(isLoading) return <Loader/>
+
+
   return (
    
       <div className="space-y-6">
@@ -26,9 +47,11 @@ const DashboardProducts = () => {
             <h1 className="text-2xl font-bold">Products</h1>
             <p className="text-muted-foreground">Manage your products here</p>
           </div>
+          <Link to={"/dashboard/products/add"} >
           <Button style={{ backgroundColor: "#9B87F5" }} className="hover:bg-[#8B77E5]">
             Add Product
           </Button>
+          </Link>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -38,7 +61,7 @@ const DashboardProducts = () => {
           </div>
         </div>
 
-        <div className="rounded-md border">
+        <div className="rounded-md border ">
           <Table>
             <TableHeader>
               <TableRow>
@@ -49,8 +72,10 @@ const DashboardProducts = () => {
                 <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
-              {products.map((product) => (
+            {
+              productList &&
+              <TableBody>
+              {productList.map((product) => (
                 <TableRow key={product.id}>
                   <TableCell>{product.name}</TableCell>
                   <TableCell>{product.price}</TableCell>
@@ -58,12 +83,16 @@ const DashboardProducts = () => {
                   <TableCell>{product.category}</TableCell>
                   <TableCell>
                     <Button variant="ghost" size="sm">
-                      Edit
+                      <Pen className="text-secondary"/>
+                    </Button>
+                    <Button variant="ghost" size="sm" onClick={() => handleDelete(product.id)}>
+                      <Trash className="text-slate-500"/>
                     </Button>
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
+            }
           </Table>
         </div>
       </div>

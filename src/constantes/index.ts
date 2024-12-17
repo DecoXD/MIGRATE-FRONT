@@ -66,8 +66,7 @@ export const featuredProducts = [
       featured: true,
     },
   ];
-
-  
+ 
 export const registerInputs = [
 
   {
@@ -126,3 +125,64 @@ export const dashboardMenuItems = [
   { title: "Notifications", icon: Bell, path: "/dashboard/notifications",admin:false },
   { title: "Settings", icon: Settings, path: "/dashboard/settings" ,admin:false},
 ];
+
+export const productFormItens = [
+  
+    {
+    label:"Product Name",
+    name:"name",
+    placeholder:"Digite o nome do produto",
+    type:'text',
+ 
+    
+  },
+  {
+    label:"Discription",
+    textArea:true,
+    name:"description",
+    placeholder:"Describe the product.",
+    type:'text',
+  
+    
+  },
+  {
+    select:true,
+    options:["","Marketing","Social Media","Development","Store Maker","Paid traffic","Design","Card"],
+    label:"Category",
+    name:"category",
+    placeholder:"insert product discount",
+    type:"number",
+  },
+  {
+   
+    label:"Choose product image",
+    name:"image",
+    placeholder:"insira o preço",
+    type:"file",
+  }
+  ,
+  {
+    label:"Price",
+    name:"price",
+    placeholder:"insira o preço",
+    type:"number",
+   
+   
+  },
+  {
+    label:"discount (%)",
+    name:"discount",
+    placeholder:"insert product discount",
+    type:"number",
+  
+  },
+  {
+    label:"Stock",
+    name:"stock",
+    placeholder:"insert product quantity",
+    type:"number",
+  },
+  
+
+]
+

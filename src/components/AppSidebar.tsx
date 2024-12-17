@@ -13,12 +13,13 @@ import {
 import { dashboardMenuItems } from "@/constantes";
 
 import { useAuthContext } from "@/context/authContext";
+import Loader from "./Loader";
 // isso aqui coloco em constantes
 
 export function AppSidebar() {
   const location = useLocation();
   const{user,isLoading} = useAuthContext()
-
+  if(isLoading) return 
 
   return (
     <Sidebar className="mt-20 bg-white ">
