@@ -4,6 +4,8 @@ import { toast } from 'sonner';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 const TOKEN = localStorage.getItem('token')
+
+
 export async function getAllProducts():Promise<ProductProps[]>{
   try {
     const response = await api.get(`${API_BASE_URL}/api/admin/p/`)
@@ -12,6 +14,17 @@ export async function getAllProducts():Promise<ProductProps[]>{
     return error
   }
 }
+
+
+export async function getProductById(id:number):Promise<ProductProps>{
+  try {
+    const response = await api.get(`${API_BASE_URL}/api/p/${id}`)
+    return response.data
+  } catch (error) {
+    return error
+  }
+}
+
 
 export async function createProduct(product:ProductProps){
   try {
@@ -22,13 +35,32 @@ export async function createProduct(product:ProductProps){
         }
       }
     )
-    console.log(response)
+    
     toast.success(response.data.response.message)
 
   } catch (error) {
     toast.error(error.data.message)
   }
 }
+
+
+export async function updateProduct(product:ProductProps){
+  try {
+    const response = await api.put(`${API_BASE_URL}/api/admin/p/update`,
+      product,{
+        headers:{
+          Authorization:`bearer ${TOKEN}`
+        }
+      }
+    )
+    
+    toast.success(response.data.message)
+
+  } catch (error) {
+    toast.error(error.data.message)
+  }
+}
+
 
 export async function deleteProduct(id:number):Promise<void>{
   try {
@@ -42,7 +74,7 @@ export async function deleteProduct(id:number):Promise<void>{
         
       }
     })
-    console.log(response)
+   
     toast.success(response.data.message)
   } catch (error) {
     toast.error(error.data.message)

@@ -82,9 +82,11 @@ const DashboardProducts = () => {
                   <TableCell>{product.stock}</TableCell>
                   <TableCell>{product.category}</TableCell>
                   <TableCell>
-                    <Button variant="ghost" size="sm">
-                      <Pen className="text-secondary"/>
-                    </Button>
+                    <Link to={`/dashboard/products/update/${product.id!}`}>
+                      <Button variant="ghost" size="sm">
+                        <Pen className="text-secondary"/>
+                      </Button>
+                    </Link>
                     <Button variant="ghost" size="sm" onClick={() => handleDelete(product.id)}>
                       <Trash className="text-slate-500"/>
                     </Button>

@@ -18,6 +18,7 @@ import NotFound404 from "@/pages/NotFound404";
 import AdminRoute from "./AdminRoute";
 import Loader from "@/components/Loader";
 import CreateProduct from "@/pages/Dashboard/Sections/CreateProduct";
+import UpdateProduct from "@/pages/Dashboard/Sections/UpdateProduct";
 
 const router = createBrowserRouter([
  {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
         {
           path:"/dashboard/products/add",
           element:<AdminRoute Element={<CreateProduct/>}/>,
+        },
+        {
+          path:"/dashboard/products/update/:id",
+          element:<AdminRoute Element={<UpdateProduct/>}/>,
         },
       ]
     },

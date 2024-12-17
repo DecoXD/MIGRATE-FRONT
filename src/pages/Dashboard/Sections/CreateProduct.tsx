@@ -1,13 +1,13 @@
-import { createProduct } from "@/api/backend/productApi"
 import ProductForm from "@/components/shared/ProductForm"
+import { useCreateProduct } from "@/lib/react-query/queriesAndMutations"
 import { ProductProps } from "@/types/products/product"
 
 
 const CreateProduct = ():JSX.Element => {
-
+  const {mutateAsync:createProduct} = useCreateProduct()
   
   async function handleCreateProduct(product:ProductProps) {
-    createProduct(product)
+    await createProduct(product)
   }
 
   return (

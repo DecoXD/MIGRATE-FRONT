@@ -1,6 +1,7 @@
 import { getUser, login, logoff, register } from "@/api/backend/authApi";
-import { deleteProduct, getAllProducts } from "@/api/backend/productApi";
+import { createProduct, deleteProduct, getAllProducts, updateProduct } from "@/api/backend/productApi";
 import { LoginUserProps, RegisterUserProps } from "@/types/auth";
+import { ProductProps } from "@/types/products/product";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 
@@ -45,4 +46,28 @@ export function useDeleteProduct(){
       })
     }
   })
+}
+export function useUpdateProduct(){
+  const queryClient =useQueryClient()
+  return useMutation({
+    mutationFn:(product:ProductProps) => updateProduct(product),
+    onSuccess:() =>{
+      queryClient.invalidateQueries({
+        queryKey:['products']
+      })
+    }
+  })
+}
+
+export function useCreateProduct(){
+    const queryClient = useQueryClient()
+    return useMutation({
+      mutationFn:(product:ProductProps) => createProduct(product),
+      onSuccess:() =>{
+        queryClient.invalidateQueries({
+          queryKey:['products']
+        })
+      }
+    })
+  
 }

@@ -1,35 +1,23 @@
 import { productFormItens } from "@/constantes"
 import { Plus } from "lucide-react"
 import { Button } from "../ui/button"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { ProductProps } from "@/types/products/product"
 import { toast } from "sonner"
+import Loader from "../Loader"
+import { useNavigate } from "react-router-dom"
 
 type ProductFormProps = {
   title:string,
-  product:ProductProps | null,
+  product?:ProductProps ,
   action:string,
   handler: (produto:ProductProps) => Promise<void>;
+  isLoading?:boolean
 }
 
-const ProductForm = ({title,product=null,action,handler}:ProductFormProps) => {
- 
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>,name:string) =>{
-  let typeNumbers={
-    price:true,
-    stock:true,
-    discount:true
-  }
-  //verify if the current field belongs to type number fields
-  let isInt = typeNumbers[name] || false
-  let value = e.target.value
- 
-  setProductItem(previus => ({
-    ...previus,
-    [name]:isInt ? Number(value):value // convert from string to number and send to backend
-  }))
-}
+const ProductForm = ({title,product=undefined,action,handler,isLoading = false}:ProductFormProps) => {
 
+  const navigate = useNavigate()
   const [productItem,setProductItem] = useState<ProductProps>(
     { category:"",
       description:'',
@@ -38,30 +26,49 @@ const ProductForm = ({title,product=null,action,handler}:ProductFormProps) => {
       price:null,
       stock:null })
   
+
+ 
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>,name:string) =>{
+    let typeNumbers={
+      price:true,
+      stock:true,
+      discount:true
+    }
+    //verify if the current field belongs to type number fields
+    let isInt = typeNumbers[name] || false
+    let value = e.target.value 
+  
+    setProductItem(previus => ({
+      ...previus,
+      [name]:isInt ? Number(value):value // convert from string to number and send to backend
+    }))
+  }
+
+ 
   async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
     e.preventDefault()
    
     try {
       const allFieldsIsFilled = !(Object.values(productItem).some((field) => !field))
-      console.log(productItem)
+     
       if(!allFieldsIsFilled) return toast.error("Por favor, preencha todos os campos")
       await handler(productItem)
       
-      setProductItem(() => ({ category:"",
-        description:'',
-        image:'',
-        name:'',
-        price:0,
-        discount:0,
-        stock:0 }))
+     navigate('/dashboard/products/')
     } catch (error) {
-      console.log(error)
+     
       toast.error("Ocorreu um erro, tente novamente mais tarde")
     }
   }
 
-  if(product) setProductItem(product)
+  if(isLoading)return <Loader/>
+  useEffect(() =>{
+    if(product) {
+      setProductItem({...productItem,...product,["image"]:''})
 
+    }
+  },[product])
+ 
   return (
     <div>
       <div className="flex gap-2 items-center">
@@ -75,7 +82,7 @@ const ProductForm = ({title,product=null,action,handler}:ProductFormProps) => {
               return (
                 <div className="flex flex-col gap-2" key={`${item.label}#${idx}`}>
                   <label className="font-medium">{item.label}</label>
-                  <textarea onChange={(e) =>handleChange(e,item.name)} value={productItem[item.name]} className="border-2 p-2 rounded-lg " name={item.name} id="" placeholder={item.placeholder}></textarea>
+                  <textarea onChange={(e) =>handleChange(e,item.name)} value={productItem[item.name]||""} className="border-2 p-2 rounded-lg " name={item.name} id="" placeholder={item.placeholder}></textarea>
                 </div>
                 )
             }
@@ -85,7 +92,7 @@ const ProductForm = ({title,product=null,action,handler}:ProductFormProps) => {
                   <label  className="font-medium">
                     {item.label}
                   </label>
-                    <select onChange={(e) =>handleChange(e,item.name)} name={item.name} value={productItem[item.name]} className="  border-2 p-1 rounded-lg">
+                    <select onChange={(e) =>handleChange(e,item.name)} name={item.name} value={productItem[item.name]||""} className="  border-2 p-1 rounded-lg">
                       {
                         item.options.map((opt,idx) => <option className="p-2" value={opt} key={`${opt}#${idx}`}>{opt}</option>)
                       }
@@ -96,7 +103,7 @@ const ProductForm = ({title,product=null,action,handler}:ProductFormProps) => {
             return (
               <div className="flex flex-col gap-2" key={`${item.label}#${idx}`}>
                 <label className="font-medium">{item.label}</label>
-                <input onChange={(e) =>handleChange(e,item.name)} value={productItem[item.name]} className=" border-2 p-2 rounded-lg" type={item.type} name={item.name}  placeholder={item.placeholder} />
+                <input onChange={(e) =>handleChange(e,item.name)} value={productItem[item.name]||''} className=" border-2 p-2 rounded-lg" type={item.type} name={item.name}  placeholder={item.placeholder} />
               </div>
             )
             
